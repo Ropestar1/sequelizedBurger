@@ -1,0 +1,21 @@
+body {
+	background-color: #efe8e2;
+}
+
+.devour-btn {
+	color: orange;
+	background-color: gray;
+	height: 30px;
+	width: 150px;
+	margin-top: 12px;
+}
+
+#background-img {
+	height: 325px;
+}
+
+.burgers {
+	font-size: 24px;
+	background-color: orange;
+	margin-top: 12px;
+}
