@@ -5,14 +5,19 @@ var exphbs = require("express-handlebars");
 var db = require("./models");
 
 var app = express();
-var port = process.env.PORT || 3000;
+var PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // why true?
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-// Serve static content for the app from the "public" directory in the application directory.
+
+
+app.get('/', function (req, res) {
+    res.render('index');
+});
+
 app.use(express.static("public"));
 
 // Set Handlebars.
