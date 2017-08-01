@@ -13,37 +13,41 @@ var db = require("../models");
 // =============================================================
 module.exports = function(app) {
 
-  // GET route for getting all of the todos
-  app.get("/api/burgers", function(req, res) {
+  app.get("/", function(req, res) {
     db.Burger.findAll({
       // include: [db.Post]
     }).then(function(dbBurger) {
-      res.json(dbBurger);
+      var hbsObject = {
+        burger: dbBurger.dataValues
+      };
+      console.log('from get', hbsObject);
+      // res.json(dbBurger);
+      res.render("index", hbsObject)
     });
   });
 
-  // POST route for saving a new todo. You can create a todo using the data on req.body
-  app.post("/api/burgers", function(req, res) {
+  app.post("/", function(req, res) {
     db.Burger.create(req.body).then(function(dbBurger) {
-      res.json(dbBurger);
+      console.log('dbBurger post', dbBurger)
+      console.log('dbBurger sections', Object.keys(dbBurger.dataValues.burger_name))
+      var hbsObject = {
+        burger: dbBurger
+      };
+      console.log('from post', hbsObject);
+      // res.json(dbBurger);
+      res.render("index", hbsObject)
     });
   });
 
-  // burger.create([
-  //   "burger_name"
-  // ], [
-  //   req.body.burger_name
-  // ], function() {
-  //   res.redirect("/");
-  // });
+  // app.put("/:id", function(req, res) {
+  //   db.Burger.create(req.body).then(function(dbBurger) {
+  //     var hbsObject = {
+  //       burger: dbBurger
+  //     };
+  //     console.log('from post', hbsObject);
+  //     // res.json(dbBurger);
+  //     res.render("index", hbsObject);
+  //     // res.redirect("/");
+  //   });
 
-  // // DELETE route for deleting todos. You can access the todo's id in req.params.id
-  // app.delete("/api/burgers/:id", function(req, res) {
-
-  // });
-
-  // // PUT route for updating todos. The updated todo will be available in req.body
-  // app.put("/api/burgers", function(req, res) {
-
-  // });
 };

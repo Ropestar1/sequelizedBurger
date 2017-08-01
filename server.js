@@ -14,9 +14,9 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 
 
-app.get('/', function (req, res) {
-    res.render('index');
-});
+// app.get('/', function (req, res) {
+//     res.render('index');
+// });
 
 app.use(express.static("public"));
 
