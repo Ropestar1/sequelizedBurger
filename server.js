@@ -1,6 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
+var methodOverride = require("method-override");
 
 var db = require("./models");
 
@@ -8,9 +9,11 @@ var app = express();
 var PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true })); // why true?
+app.use(bodyParser.urlencoded({ extended: false })); // why true?
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+
+app.use(methodOverride("_method"));
 
 
 
@@ -26,7 +29,11 @@ app.set("view engine", "handlebars");
 
 // Routes
 // =============================================================
-require("./routes/api-routes.js")(app);
+// require("./controllers/burgers_controllers.js")(app);
+
+var routes = require("./controllers/burgers_controllers.js");
+
+app.use("/", routes);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================

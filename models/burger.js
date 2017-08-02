@@ -11,8 +11,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     }
-    // do I need to add the date timestamp and other things?
-
   });
   return Burger;
 };
