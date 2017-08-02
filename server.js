@@ -15,12 +15,6 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 app.use(methodOverride("_method"));
 
-
-
-// app.get('/', function (req, res) {
-//     res.render('index');
-// });
-
 app.use(express.static("public"));
 
 // Set Handlebars.

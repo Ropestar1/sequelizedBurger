@@ -13,26 +13,35 @@ router.get("/", function(req, res) {
       var hbsObject = {
         burger: dbBurger
       };
-
       res.render("index", hbsObject)
     });
 });
 
 router.post("/", function(req, res) {
-  db.Burger.create(req.body).then(function(dbBurger) {
+  db.Burger.create(req.body).then(function() {
     res.redirect("/");
   });
 });
 
 router.put("/:id", function(req, res) {
-  console.log('req.params.id', req.params.id);
-  var condition = "id = " + req.params.id;
+  // console.log('req.params.id', req.params.id);
+  // var condition = "id = " + req.params.id;
 
-  console.log("condition", condition);
+  // console.log("condition", condition);
+
+  // db.Burger.update({
+  //   devoured: req.body.devoured
+  // }, condition, function() {
+  //   res.redirect("/");
+  // });
 
   db.Burger.update({
-    devoured: req.body.devoured
-  }, condition, function() {
+    devoured: req.body.devoured,
+  }, {
+    where: {
+      id: req.params.id
+    }
+  }).then(function() {
     res.redirect("/");
   });
 });
