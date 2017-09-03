@@ -9,7 +9,7 @@ var app = express();
 var PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false })); // why true?
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
@@ -23,7 +23,6 @@ app.set("view engine", "handlebars");
 
 // Routes
 // =============================================================
-// require("./controllers/burgers_controllers.js")(app);
 
 var routes = require("./controllers/burgers_controllers.js");
 
